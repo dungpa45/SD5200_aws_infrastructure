@@ -1,7 +1,13 @@
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 
-  tags = var.tags
+  # tags = var.tags
+  tags = merge(
+    var.tags,
+    {
+      Name = "${var.project}-${var.name}-${var.environment}-igw"
+    }
+  )
 }
 
 resource "aws_eip" "default" {

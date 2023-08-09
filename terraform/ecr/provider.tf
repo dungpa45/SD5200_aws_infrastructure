@@ -1,10 +1,10 @@
 provider "aws" {
   region  = "ap-southeast-1"
-  profile = "datton.nashtech.saml"
+  profile = "default"
 }
 
 terraform {
-  required_version = "~> 1.3.0"
+  required_version = "~> 1.5.0"
 
   required_providers {
     aws = {
@@ -17,7 +17,7 @@ terraform {
     key            = "ecr.tfstate"
     region         = "ap-southeast-1"
     dynamodb_table = "terraform-boostrap-nashtech-devops"
-    profile        = "datton.nashtech.saml"
+    profile        = "default"
     encrypt        = true
     kms_key_id     = "05e421ca-4bbc-4f0f-be49-e53fbb97769c"
   }

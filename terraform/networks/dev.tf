@@ -17,7 +17,7 @@ module "network_dev" {
   vpc-cidr-block = var.vpc-cidr-block-dev
 
   vpc-endpoint-s3-enable = false
-  create_private_natgw   = true
+  create_private_natgw   = false
 
   public-subnet-numbers  = var.public-subnet-numbers-dev
   private-subnet-numbers = var.private-subnet-numbers-dev

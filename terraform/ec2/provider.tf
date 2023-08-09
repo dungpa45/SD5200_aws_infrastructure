@@ -1,6 +1,6 @@
 provider "aws" {
   region  = "ap-southeast-1"
-  profile = "datton.nashtech.saml"
+  profile = "default"
 }
 
 terraform {
@@ -9,7 +9,7 @@ terraform {
     key            = "ec2.tfstate"
     region         = "ap-southeast-1"
     dynamodb_table = "terraform-boostrap-nashtech-devops"
-    profile        = "datton.nashtech.saml"
+    profile        = "default"
     encrypt        = true
     kms_key_id     = "fff758c9-658d-4a49-98c4-3fabf9b7384d"
   }
@@ -20,7 +20,7 @@ data "terraform_remote_state" "bootstrap" {
   config = {
     bucket  = "terraform-boostrap-nashtech-devops-0002"
     key     = "terraform.tfstate"
-    profile = "datton.nashtech.saml"
+    profile = "default"
     region  = "ap-southeast-1"
   }
 }
@@ -32,7 +32,7 @@ data "terraform_remote_state" "network" {
   config = {
     bucket  = "terraform-boostrap-nashtech-devops-0002"
     key     = "network.tfstate"
-    profile = "datton.nashtech.saml"
+    profile = "default"
     region  = "ap-southeast-1"
   }
 }

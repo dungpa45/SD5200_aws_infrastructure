@@ -4,7 +4,7 @@ environment  = "dev"
 
 project = "nashtech-devops"
 
-owner        = "datton94"
+owner        = "dungpa"
 
 iam_role_default_name = "bastion-host"
 

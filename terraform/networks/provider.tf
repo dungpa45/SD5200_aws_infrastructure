@@ -13,13 +13,13 @@ terraform {
     }
   }
 
-  # backend "s3" {
-  #   bucket         = "terraform-boostrap-nashtech-devops"
-  #   key            = "network.tfstate"
-  #   region         = "ap-southeast-1"
-  #   dynamodb_table = "terraform-network-ws-boostrap-nashtech-devops"
-  #   profile        = "datton.nashtech"
-  #   encrypt        = true
-  #   kms_key_id     = "0649bddf-d19b-4709-a411-2f073472785c"
-  # }
+  backend "s3" {
+    bucket         = "terraform-boostrap-nashtech-devops"
+    key            = "network.tfstate"
+    region         = "ap-southeast-1"
+    dynamodb_table = "terraform-network-ws-boostrap-nashtech-devops"
+    profile        = "datton.nashtech"
+    encrypt        = true
+    kms_key_id     = "0649bddf-d19b-4709-a411-2f073472785c"
+  }
 }
