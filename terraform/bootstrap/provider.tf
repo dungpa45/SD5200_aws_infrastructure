@@ -1,10 +1,10 @@
 provider "aws" {
   region  = "ap-southeast-1"
-  profile = "datton.nashtech.saml"
+  profile = "default"
 }
 
 terraform {
-  required_version = "~> 1.3.0"
+  required_version = "~> 1.5.0"
 
   required_providers {
     aws = {
@@ -13,12 +13,12 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "terraform-boostrap-nashtech-devops-0002"
+    bucket         = "dungpa-init-terraform"
     key            = "terraform.tfstate"
     region         = "ap-southeast-1"
-    dynamodb_table = "terraform-boostrap-nashtech-devops"
-    profile        = "datton.nashtech.saml"
+    dynamodb_table = "terraform-init-table"
+    profile        = "default"
     encrypt        = true
-    kms_key_id     = "fff758c9-658d-4a49-98c4-3fabf9b7384d"
+    # kms_key_id     = "fff758c9-658d-4a49-98c4-3fabf9b7384d"
   }
 }

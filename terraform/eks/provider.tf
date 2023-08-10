@@ -1,6 +1,6 @@
 provider "aws" {
   region  = "ap-southeast-1"
-  profile = "datton.nashtech.saml"
+  profile = "default"
 }
 
 provider "kubernetes" {
@@ -14,7 +14,7 @@ provider "kubernetes" {
     #args = ["eks", "get-token", "--cluster-name", module.eks.cluster_id]
     args = [
       "--profile",
-      "datton.nashtech.saml",
+      "default",
       "--region",
       "ap-southeast-1",
       "eks",
@@ -26,7 +26,7 @@ provider "kubernetes" {
 }
 
 terraform {
-  required_version = "~> 1.3.0"
+  required_version = "~> 1.5.0"
 
   required_providers {
     aws = {
@@ -35,22 +35,22 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "terraform-boostrap-nashtech-devops-0002"
+    bucket         = "dungpa-terraform-boostrap-nashtech-devops-5200"
     key            = "dev.tfstate"
     region         = "ap-southeast-1"
     dynamodb_table = "terraform-boostrap-nashtech-devops"
-    profile        = "datton.nashtech.saml"
+    profile        = "default"
     encrypt        = true
-    kms_key_id     = "fff758c9-658d-4a49-98c4-3fabf9b7384d"
+    # kms_key_id     = "fff758c9-658d-4a49-98c4-3fabf9b7384d"
   }
 }
 
 data "terraform_remote_state" "bootstrap" {
   backend = "s3"
   config = {
-    bucket  = "terraform-boostrap-nashtech-devops-0002"
+    bucket  = "dungpa-terraform-boostrap-nashtech-devops-5200"
     key     = "terraform.tfstate"
-    profile = "datton.nashtech.saml"
+    profile = "default"
     region  = "ap-southeast-1"
   }
 }
@@ -60,9 +60,9 @@ data "terraform_remote_state" "network" {
   workspace = "dev"
 
   config = {
-    bucket  = "terraform-boostrap-nashtech-devops-0002"
+    bucket  = "dungpa-terraform-boostrap-nashtech-devops-5200"
     key     = "network.tfstate"
-    profile = "datton.nashtech.saml"
+    profile = "default"
     region  = "ap-southeast-1"
   }
 }

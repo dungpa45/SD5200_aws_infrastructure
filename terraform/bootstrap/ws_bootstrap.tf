@@ -22,7 +22,7 @@ resource "aws_kms_key" "terraform-bootstrap" {
 }
 
 resource "aws_kms_alias" "terraform-bootstrap" {
-  name          = "alias/terraform-${var.name}-${var.project}-0002"
+  name          = "alias/terraform-${var.name}-${var.project}-5200"
   target_key_id = aws_kms_key.terraform-bootstrap.key_id
 }
 
@@ -39,8 +39,8 @@ data "aws_iam_policy_document" "kms_use" {
       type = "AWS"
       identifiers = [
         #aws_iam_role.devops.arn,
-        "arn:aws:iam::377414509754:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_AdministratorAccessAWS3_bf168735846c80aa",
-        "arn:aws:iam::377414509754:user/dat.nguyen"
+        # "arn:aws:iam::377414509754:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_AdministratorAccessAWS3_bf168735846c80aa",
+        "arn:aws:iam::626557673667:user/dung-admin"
       ]
     }
   }
@@ -48,7 +48,7 @@ data "aws_iam_policy_document" "kms_use" {
 }
 
 resource "aws_s3_bucket" "bootstrap" {
-  bucket = "terraform-${var.name}-${var.project}-0002"
+  bucket = "dungpa-terraform-${var.name}-${var.project}-5200"
 
   tags = module.labels.tags
 
@@ -78,7 +78,7 @@ data "aws_iam_policy_document" "allow_access" {
     principals {
       type        = "AWS"
       identifiers = [
-        "arn:aws:iam::377414509754:user/dat.nguyen"
+        "arn:aws:iam::626557673667:user/dung-admin"
         ]
     }
 

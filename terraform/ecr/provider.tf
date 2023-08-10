@@ -13,12 +13,12 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "terraform-boostrap-nashtech-devops"
+    bucket         = "dungpa-terraform-boostrap-nashtech-devops-5200"
     key            = "ecr.tfstate"
     region         = "ap-southeast-1"
     dynamodb_table = "terraform-boostrap-nashtech-devops"
     profile        = "default"
     encrypt        = true
-    kms_key_id     = "05e421ca-4bbc-4f0f-be49-e53fbb97769c"
+    # kms_key_id     = "05e421ca-4bbc-4f0f-be49-e53fbb97769c"
   }
 } 

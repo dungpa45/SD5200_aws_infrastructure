@@ -5,7 +5,7 @@ resource "aws_iam_role" "bastion" {
 }
 
 resource "aws_iam_role" "bastion_2" {
-  name               = "bastion-${var.project}-0002"
+  name               = "bastion-${var.project}-5200"
   path               = "/"
   assume_role_policy = data.aws_iam_policy_document.trust-policies-bastion-assume-role.json
 }
