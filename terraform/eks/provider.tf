@@ -57,7 +57,7 @@ data "terraform_remote_state" "bootstrap" {
 
 data "terraform_remote_state" "network" {
   backend = "s3"
-  workspace = "dev"
+  # workspace = "dev"
 
   config = {
     bucket  = "dungpa-terraform-boostrap-nashtech-devops-5200"

@@ -81,7 +81,7 @@ module "eks" {
     one = {
       name         = "mixed-1"
       max_size     = 3
-      desired_size = 3
+      desired_size = 2
 
       use_mixed_instances_policy = true
       bootstrap_extra_args       = "--kubelet-extra-args '--node-labels=mine/group=default'"
@@ -136,7 +136,7 @@ module "eks" {
   # ]
 
   aws_auth_accounts = [
-    "377414509754"
+    "626557673667"
   ]
 
   tags = module.tags_dev.tags
