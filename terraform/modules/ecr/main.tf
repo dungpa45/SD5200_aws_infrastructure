@@ -12,11 +12,18 @@ module "ecr_tags" {
 }
 
 resource "aws_ecr_repository" "default" {
-  name                 = "${var.name}-${var.project}"
+  name                 = "${var.name}-${var.project}-frontend"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
     scan_on_push = var.enable_scan_on_push
   }
+}
+resource "aws_ecr_repository" "be" {
+  name                 = "${var.name}-${var.project}-backend"
+  image_tag_mutability = "MUTABLE"
 
+  image_scanning_configuration {
+    scan_on_push = var.enable_scan_on_push
+  }
 }
