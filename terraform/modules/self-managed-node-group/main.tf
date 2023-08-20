@@ -25,7 +25,7 @@ module "user_data" {
 
   create                    = var.create
   platform                  = var.platform
-  is_eks_managed_node_group = false
+  is_eks_managed_node_group = true
 
   cluster_name        = var.cluster_name
   cluster_endpoint    = var.cluster_endpoint

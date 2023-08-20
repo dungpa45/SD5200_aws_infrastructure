@@ -8,7 +8,7 @@ locals {
                 cidr_blocks = "0.0.0.0/32"
             }
         }
-        bastion-host = {
+        jenkins = {
             ingress = {
                 from_port   = "22"
                 to_port     = "22"

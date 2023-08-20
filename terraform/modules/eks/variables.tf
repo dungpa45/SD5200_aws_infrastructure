@@ -478,17 +478,17 @@ variable "cluster_identity_providers" {
 # Fargate
 ################################################################################
 
-variable "fargate_profiles" {
-  description = "Map of Fargate Profile definitions to create"
-  type        = any
-  default     = {}
-}
+# variable "fargate_profiles" {
+#   description = "Map of Fargate Profile definitions to create"
+#   type        = any
+#   default     = {}
+# }
 
-variable "fargate_profile_defaults" {
-  description = "Map of Fargate Profile default configurations"
-  type        = any
-  default     = {}
-}
+# variable "fargate_profile_defaults" {
+#   description = "Map of Fargate Profile default configurations"
+#   type        = any
+#   default     = {}
+# }
 
 ################################################################################
 # Self Managed Node Group
@@ -550,11 +550,11 @@ variable "aws_auth_node_iam_role_arns_windows" {
   default     = []
 }
 
-variable "aws_auth_fargate_profile_pod_execution_role_arns" {
-  description = "List of Fargate profile pod execution role ARNs to add to the aws-auth configmap"
-  type        = list(string)
-  default     = []
-}
+# variable "aws_auth_fargate_profile_pod_execution_role_arns" {
+#   description = "List of Fargate profile pod execution role ARNs to add to the aws-auth configmap"
+#   type        = list(string)
+#   default     = []
+# }
 
 variable "aws_auth_roles" {
   description = "List of role maps to add to the aws-auth configmap"

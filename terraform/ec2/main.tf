@@ -1,6 +1,6 @@
-module "bastion-host" {
+module "jenkins" {
   source = "../modules/ec2"
-  name                          = "Bastion-host"
+  name                          = "jenkins"
 
   ec2_instances                 = local.bastion_hosts
   generate_ssh_key_pair         = true

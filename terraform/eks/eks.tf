@@ -2,7 +2,7 @@ module "eks" {
   source  = "../modules/eks"
 
   cluster_name    = "${var.name}-${var.environment}"
-  cluster_version = "1.26"
+  cluster_version = "1.27"
 
   iam_role_use_name_prefix = false
   iam_role_path = "/eks/"
@@ -11,7 +11,7 @@ module "eks" {
   cluster_endpoint_public_access  = true
 
   enable_irsa               = true
-  cluster_enabled_log_types = ["audit", "api", "authenticator"]
+  cluster_enabled_log_types = []
 
   cluster_addons = {
     coredns = {
@@ -67,51 +67,67 @@ module "eks" {
   }
 
   # Self Managed Node Group(s)
-  self_managed_node_group_defaults = {
-    instance_type                          = "t3a.micro"
-    update_launch_template_default_version = true
-    iam_role_additional_policies = [
-      "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-    ]
-    key_name = aws_key_pair.eks.key_name
+  # self_managed_node_group_defaults = {
+  #   instance_type                          = "t3a.micro"
+  #   update_launch_template_default_version = true
+  #   iam_role_additional_policies = [
+  #     "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  #   ]
+  #   key_name = aws_key_pair.eks.key_name
 
+  # }
+
+  # self_managed_node_groups = {
+  #   one = {
+  #     name         = "mixed-1"
+  #     max_size     = 3
+  #     desired_size = 2
+
+  #     use_mixed_instances_policy = true
+  #     # bootstrap_extra_args       = "--kubelet-extra-args '--node-labels=mine/group=default'"
+  #     bootstrap_extra_args = "--kubelet-extra-args '--node-labels=node.kubernetes.io/lifecycle=spot'"
+  #     mixed_instances_policy = {
+  #       instances_distribution = {
+  #         on_demand_base_capacity                  = 1
+  #         on_demand_percentage_above_base_capacity = 10
+  #         spot_allocation_strategy                 = "capacity-optimized"
+  #       }
+
+  #       override = [
+  #         {
+  #           instance_type     = "t3a.micro"
+  #           weighted_capacity = "1"
+  #         },
+  #         {
+  #           instance_type     = "t3a.medium"
+  #           weighted_capacity = "2"
+  #         },
+  #         {
+  #           instance_type     = "t3a.large"
+  #           weighted_capacity = "3"
+  #         },
+  #       ]
+  #     }
+  #   }
+  # }
+
+  # EKS Managed Node Group(s)
+  eks_managed_node_group_defaults = {
+    instance_types = ["t3a.micro", "t3a.medium", "t3a.small","t3.micro", "t3.medium", "t3.small"]
   }
 
-  self_managed_node_groups = {
-    one = {
-      name         = "mixed-1"
-      max_size     = 3
+  eks_managed_node_groups = {
+    green = {
+      min_size     = 2
+      max_size     = 10
       desired_size = 2
 
-      use_mixed_instances_policy = true
-      bootstrap_extra_args       = "--kubelet-extra-args '--node-labels=mine/group=default'"
-      mixed_instances_policy = {
-        instances_distribution = {
-          on_demand_base_capacity                  = 1
-          on_demand_percentage_above_base_capacity = 10
-          spot_allocation_strategy                 = "capacity-optimized"
-        }
-
-        override = [
-          {
-            instance_type     = "t3a.micro"
-            weighted_capacity = "1"
-          },
-          {
-            instance_type     = "t3a.medium"
-            weighted_capacity = "2"
-          },
-          {
-            instance_type     = "t3a.large"
-            weighted_capacity = "3"
-          },
-        ]
-      }
+      instance_types = ["t3a.small"]
+      capacity_type  = "SPOT"
     }
   }
-
   # aws-auth configmap
-  create_aws_auth_configmap = true
+  # create_aws_auth_configmap = true
   manage_aws_auth_configmap = true
 
   # aws_auth_roles = [
