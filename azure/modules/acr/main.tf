@@ -1,11 +1,12 @@
 resource "azurerm_container_registry" "acr" {
-    name                    = "devmycontainerregistry"
-    location                = "Southeast Asia"
-    resource_group_name     = "myAzureResourceGroup"
+    name                    = var.name
+    location                = var.resource_group_location
+    resource_group_name     = var.resource_group_name
     sku                     = "Standard"
     admin_enabled           = false
 
     tags = {
         environment = "dev"
+        user = "dungpa"
     }
 }

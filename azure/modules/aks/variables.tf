@@ -1,23 +1,19 @@
 variable "resource_group_name" {
     type = string
 }
+
 variable "resource_group_location" {
     type = string
 }
-variable "acr_name" {
-    type = string
-}
-variable "aks_name" {
-    type = string
-}
-variable "aks_node_size" {
+
+variable "name" {
     type = string
 }
 
-variable "aks_node_count" {
-    type = number
-}
-variable "vnet_name" {
+variable "vm_size" {
     type = string
+}
+variable "vm_count" {
+    type = number
 }
 

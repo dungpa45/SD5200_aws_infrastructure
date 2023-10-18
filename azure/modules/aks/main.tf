@@ -1,7 +1,7 @@
 resource "azurerm_kubernetes_cluster" "aks_cluster" {
-    name                = "sd5261-locvothanh-aks"
-    location            = "Southeast Asia"
-    resource_group_name = "myAzureResourceGroup"
+    name                = var.name
+    location            = var.resource_group_location
+    resource_group_name = var.resource_group_name
     dns_prefix          = "myakscluster"
 
     identity {
@@ -9,12 +9,13 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     }
     
     default_node_pool {
-        name       = "default"
-        node_count = 1
-        vm_size    = "Standard_B4ms"
+        name       = "dungnodepool"
+        node_count = var.vm_count
+        vm_size    = var.vm_size
     }
 
     tags = {
         environment = "dev"
+        user = "dungpa"
     }
 }

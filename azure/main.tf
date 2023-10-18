@@ -21,12 +21,23 @@ module "resource_group" {
 
 module "vnet" {
     source = "./modules/vnet"
+    name = var.vnet_name
+    resource_group_name     = var.resource_group_name
+    resource_group_location = var.resource_group_location
 }
 
 module "acr" {
     source = "./modules/acr"
+    name = var.acr_name
+    resource_group_name     = var.resource_group_name
+    resource_group_location = var.resource_group_location
 }
 
 module "aks_cluster" {
     source = "./modules/aks"
+    name = var.aks_name
+    vm_count = var.aks_node_count
+    vm_size = var.aks_node_size
+    resource_group_name     = var.resource_group_name
+    resource_group_location = var.resource_group_location
 }
