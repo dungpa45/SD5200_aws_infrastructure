@@ -24,6 +24,7 @@ module "vnet" {
     name = var.vnet_name
     resource_group_name     = var.resource_group_name
     resource_group_location = var.resource_group_location
+    depends_on = [ module.resource_group ]
 }
 
 module "acr" {
@@ -40,4 +41,5 @@ module "aks_cluster" {
     vm_size = var.aks_node_size
     resource_group_name     = var.resource_group_name
     resource_group_location = var.resource_group_location
+    depends_on = [ module.resource_group, module.vnet ]
 }
