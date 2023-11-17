@@ -27,17 +27,20 @@ module "vnet" {
     depends_on = [ module.resource_group ]
 }
 
-module "acr" {
-    source = "./modules/acr"
-    name = var.acr_name
-    resource_group_name     = var.resource_group_name
-    resource_group_location = var.resource_group_location
-}
+# module "acr" {
+#     source = "./modules/acr"
+#     name = var.acr_name
+#     resource_group_name     = var.resource_group_name
+#     resource_group_location = var.resource_group_location
+# }
 
 module "aks_cluster" {
     source = "./modules/aks"
-    name = var.aks_name
+    aks_name = var.aks_name
+    acr_name = var.acr_name
     vm_count = var.aks_node_count
+    vm_min = var.aks_node_min
+    vm_max = var.aks_node_max
     vm_size = var.aks_node_size
     resource_group_name     = var.resource_group_name
     resource_group_location = var.resource_group_location

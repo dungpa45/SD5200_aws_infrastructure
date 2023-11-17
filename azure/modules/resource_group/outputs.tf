@@ -3,5 +3,5 @@ output "resource_group_name" {
 }
 
 output "resource_group_location" {
-  value = "azurerm_resource_group.resouce_group.location"
+  value = "azurerm_resource_group.resource_group.location"
 }

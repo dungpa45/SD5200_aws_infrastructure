@@ -17,6 +17,12 @@ variable "aks_node_size" {
 variable "aks_node_count" {
     type = number
 }
+variable "aks_node_min" {
+    type = number
+}
+variable "aks_node_max" {
+    type = number
+}
 variable "vnet_name" {
     type = string
 }
